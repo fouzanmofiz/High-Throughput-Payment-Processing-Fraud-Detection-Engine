@@ -16,22 +16,47 @@ public class AiFraudAnalysis {
             String transactionDetails) {
 
         String prompt = """
-                You are a payment fraud analysis assistant.
-
-                Analyze this transaction for suspicious characteristics.
-
-                Transaction ID:
-                %s
-
-                Transaction details:
-                %s
-
-                Return your response in exactly this format:
-
-                Risk Level: LOW, MEDIUM, or HIGH
-                Reason: <short explanation>
-
-                Do not make the final payment decision.
+                You are an AI-powered payment fraud analyst.
+                
+                                Analyze the following payment transaction and determine
+                                whether it appears legitimate or potentially fraudulent.
+                
+                                Transaction ID:
+                                %s
+                
+                                Transaction Details:
+                                %s
+                
+                                Analyze the transaction using ONLY the information provided.
+                
+                                Consider:
+                                - Transaction amount
+                                - Currency
+                                - Unusual transaction characteristics
+                                - Any explicitly provided fraud indicators
+                                - Overall risk level
+                
+                                Important rules:
+                                - Do not invent customer history, location, device information,
+                                  previous transactions, transaction velocity, or other facts
+                                  that are not provided.
+                                - Do not say "insufficient data" for a normal transaction when
+                                  the available transaction information is sufficient to make
+                                  a basic risk assessment.
+                                - If the transaction appears legitimate, clearly explain why
+                                  it appears to be a normal and low-risk payment.
+                                - If the transaction appears suspicious, clearly identify the
+                                  characteristics that increase the risk.
+                                - Keep the explanation professional and suitable for a
+                                  real-time payment monitoring system.
+                                - Do not make absolute claims that a transaction is guaranteed
+                                  to be safe or fraudulent. Use "appears legitimate",
+                                  "appears suspicious", or similar evidence-based wording.
+                
+                                Return EXACTLY this format:
+                
+                                Risk Level: LOW/MEDIUM/HIGH
+                                Reason: <2-3 clear professional sentences>
                 """.formatted(
                 transactionId,
                 transactionDetails

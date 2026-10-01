@@ -62,7 +62,7 @@ services:
 
       JWT_SECRET: ${JWT_SECRET}
 
-      MISTRALAI_API_KEY: ${MISTRALAI_API_KEY}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
 
 volumes:
   mysql_data:
